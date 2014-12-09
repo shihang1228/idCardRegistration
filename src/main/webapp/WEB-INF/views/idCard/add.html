@@ -5,7 +5,7 @@
     </head>
     <body>
         <h1 align="center">IdCard Add</h1>
-        <form method="POST">
+        <form th:action="@{save(${_csrf.parameterName}=${_csrf.token})}" method="POST" enctype="multipart/form-data">
             <table align="center">
                 <tr>
                     <td>Name:</td>
