@@ -6,10 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("idCard")
 public class IdCardController {
+    IdCardService idCardService;
+    
+    @Autowired
+    public IdCardController(IdCardService idCardService) {
+        this.idCardService = idCardService;
+    }
+    
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add() {
         return "idCard/add";
@@ -23,15 +32,16 @@ public class IdCardController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute("idCard") IdCard idCard,
                        @RequestParam("photo") MultipartFile photo) {
-       System.out.println(idCard.getName());
-       System.out.println(idCard.getFolk());
-       System.out.println(idCard.getGender());
-       System.out.println(idCard.getBirthday());
-       System.out.println(idCard.getAddress());
-       System.out.println(idCard.getAgency());
-       System.out.println(idCard.getContent());
-       System.out.println(idCard.getContentType());
-       System.out.println(photo);
+        
+        try {
+            idCard.setContent(photo.getBytes());
+            idCard.setContentType(photo.getContentType());
+            
+            idCardService.save(idCard);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        
        return "redirect:list";
     }
 }
