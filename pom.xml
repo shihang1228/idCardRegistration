@@ -5,7 +5,7 @@
         >
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.baldurtech</groupId>
-    <artifactId>shiny-lana</artifactId>
+    <artifactId>IdCardRegistration</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Spring MVC Application</name>
@@ -262,7 +262,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <warName>shiny-lana-1.0-SNAPSHOT</warName>
+                    <warName>Id-Card-Registration-1.0-SNAPSHOT</warName>
                 </configuration>
             </plugin>
             <plugin>
