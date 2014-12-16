@@ -11,4 +11,9 @@ public class IdCardController {
     public String list() {
         return "idCard/list";
     }
+    
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String create() {
+        return "idCard/create";
+    }
 }

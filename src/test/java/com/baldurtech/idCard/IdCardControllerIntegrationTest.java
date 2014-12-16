@@ -14,4 +14,10 @@ public class IdCardControllerIntegrationTest extends WebAppConfigurationAware {
         mockMvc.perform(get("/idCard/list"))
                .andExpect(view().name("idCard/list"));
     }
+    
+    @Test
+    public void 当url为idCard_create时应该访问create页面() throws Exception {
+        mockMvc.perform(get("/idCard/create"))
+               .andExpect(view().name("idCard/create"));
+    }
 }

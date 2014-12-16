@@ -20,4 +20,9 @@ public class IdCardControllerUnitTest {
     public void 调用list方法时应该返回idCard_list字符串() {
         assertEquals("idCard/list", idCardController.list());
     }
+    
+    @Test
+    public void 调用create方法是应该返回idCard_create字符串() {
+        assertEquals("idCard/create", idCardController.create());
+    }
 }
