@@ -9,12 +9,23 @@ import java.text.DateFormat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import com.baldurtech.config.WebSecurityConfigurationAware;
 
 public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAware {
     IdCard idCard;
     DateFormat format;
+    
+    public MockHttpServletRequestBuilder postIdCardTo(String url) {
+        return post(url).param("name", idCard.getName())
+                         .param("folk", idCard.getFolk())
+                         .param("gender", idCard.getGender())
+                         .param("birthday", format.format(idCard.getBirthday()))
+                         .param("agency", idCard.getAgency())
+                         .param("address", idCard.getAddress())
+                         .param("code", idCard.getCode());
+    }
     
     @Before
     public void setup() {
@@ -37,14 +48,7 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
     
     @Test
     public void 当角色为user时url为idCard_save时应该重定向到list页面() throws Exception {
-       adminPerform(post("/idCard/save")
-                       .param("name", idCard.getName())
-                       .param("folk", idCard.getFolk())
-                       .param("gender", idCard.getGender())
-                       .param("birthday", format.format(idCard.getBirthday()))
-                       .param("agency", idCard.getAgency())
-                       .param("address", idCard.getAddress())
-                       .param("code", idCard.getCode()))
+       adminPerform(postIdCardTo("/idCard/save"))
                .andExpect(redirectedUrl("list"));
     }
 }
