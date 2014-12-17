@@ -1,19 +1,21 @@
 package com.baldurtech.idCard;
 
+import javax.persistence.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class IdCardRepository {
+    @PersistenceContext
+    EntityManager entityManager;
+    
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+    
     public IdCard save(IdCard idCard) {
-        
-        System.out.println(idCard.getName());
-        System.out.println(idCard.getGender());
-        System.out.println(idCard.getFolk());
-        System.out.println(idCard.getAddress());
-        System.out.println(idCard.getAgency());
-        System.out.println(idCard.getBirthday());
-        System.out.println(idCard.getCode());
-        
+        entityManager.persist(idCard);
         return idCard;
     }
 }
