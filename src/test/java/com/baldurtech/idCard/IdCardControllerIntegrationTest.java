@@ -10,9 +10,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.baldurtech.config.WebAppConfigurationAware;
+import com.baldurtech.config.WebSecurityConfigurationAware;
 
-public class IdCardControllerIntegrationTest extends WebAppConfigurationAware {
+public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAware {
     IdCard idCard;
     DateFormat format;
     
@@ -24,20 +24,20 @@ public class IdCardControllerIntegrationTest extends WebAppConfigurationAware {
     }
     
     @Test
-    public void 当url为idCard_list时应该访问list页面() throws Exception {
-        mockMvc.perform(get("/idCard/list"))
+    public void 当角色为user时url为idCard_list时应该访问list页面() throws Exception {
+        userPerform(get("/idCard/list"))
                .andExpect(view().name("idCard/list"));
     }
     
     @Test
-    public void 当url为idCard_create时应该访问create页面() throws Exception {
-        mockMvc.perform(get("/idCard/create"))
+    public void 当角色为user时url为idCard_create时应该访问create页面() throws Exception {
+        userPerform(get("/idCard/create"))
                .andExpect(view().name("idCard/create"));
     }
     
     @Test
-    public void 当url为idCard_save时应该重定向到list页面() throws Exception {
-        mockMvc.perform(post("/idCard/save")
+    public void 当角色为user时url为idCard_save时应该重定向到list页面() throws Exception {
+       userPerform(post("/idCard/save")
                        .param("name", idCard.getName())
                        .param("folk", idCard.getFolk())
                        .param("gender", idCard.getGender())
