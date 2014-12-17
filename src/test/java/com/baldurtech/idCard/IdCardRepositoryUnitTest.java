@@ -43,7 +43,7 @@ public class IdCardRepositoryUnitTest {
     
     @Test
     public void 调用idCardRepository的save方法进行保存() {
-        idCardRepository.save(idCard);
+        assertEquals(idCard, idCardRepository.save(idCard));
         verify(entityManager).persist(idCard);
     }
 }
