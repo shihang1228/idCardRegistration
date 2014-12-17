@@ -5,7 +5,8 @@
     </head>
     <body>
         <h1 align="center">IdCard Create</h1>
-        <form th:action="@{save}" method="POST">
+       <form th:action="@{save(${_csrf.parameterName}=${_csrf.token})}" method="POST" enctype="multipart/form-data">
+
             <table align="center">
               <tr>
                     <td>Name:</td>
@@ -37,6 +38,10 @@
                 <tr>
                     <td>Agency:</td>
                     <td><input type="text" name="agency"/></td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td><input type="file" name="image"/></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><input type="submit" name="submit" value="Submit"/></td>

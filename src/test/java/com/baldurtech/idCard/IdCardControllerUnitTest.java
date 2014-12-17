@@ -11,11 +11,15 @@ import static org.junit.Assert.assertEquals;
 import org.mockito.Mock;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.web.multipart.MultipartFile;
 import static org.mockito.Mockito.verify;
 
 public class IdCardControllerUnitTest extends CreateIdCard{
     IdCard idCard;
     DateFormat format;
+    
+    @Mock
+    MultipartFile image;
     
     @Mock
     IdCardService idCardService;
@@ -41,7 +45,7 @@ public class IdCardControllerUnitTest extends CreateIdCard{
     
     @Test
     public void 调用save方法时应该返回redirect_list字符串() {
-        assertEquals("redirect:list", idCardController.save(idCard));
+        assertEquals("redirect:list", idCardController.save(idCard, image));
         verify(idCardService).save(idCard);
     }
 }

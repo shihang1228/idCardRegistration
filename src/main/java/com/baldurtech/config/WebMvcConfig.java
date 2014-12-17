@@ -20,6 +20,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.baldurtech.Application;
 
@@ -74,6 +75,16 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
         return thymeleafViewResolver;
     }
+    
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        resolver.setMaxUploadSize(2 * 1024 * 1024);   
+        return resolver;
+
+    }
+
 
     @Override
     public Validator getValidator() {
