@@ -31,13 +31,13 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
     
     @Test
     public void 当角色为user时url为idCard_create时应该访问create页面() throws Exception {
-        userPerform(get("/idCard/create"))
+        adminPerform(get("/idCard/create"))
                .andExpect(view().name("idCard/create"));
     }
     
     @Test
     public void 当角色为user时url为idCard_save时应该重定向到list页面() throws Exception {
-       userPerform(post("/idCard/save")
+       adminPerform(post("/idCard/save")
                        .param("name", idCard.getName())
                        .param("folk", idCard.getFolk())
                        .param("gender", idCard.getGender())
