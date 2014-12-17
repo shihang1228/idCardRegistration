@@ -8,13 +8,18 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import org.mockito.Mock;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.verify;
 
 public class IdCardControllerUnitTest {
     IdCard idCard;
     DateFormat format;
-     
+    
+    @Mock
+    IdCardService idCardService;
+    
     @InjectMocks
     IdCardController idCardController;
     
@@ -45,5 +50,6 @@ public class IdCardControllerUnitTest {
     @Test
     public void 调用save方法时应该返回redirect_list字符串() {
         assertEquals("redirect:list", idCardController.save(idCard));
+        verify(idCardService).save(idCard);
     }
 }
