@@ -1,19 +1,18 @@
 package com.baldurtech.idCard;
 
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class IdCardService {
+    IdCardRepository idCardRepository;
+    
+    @Autowired
+    public IdCardService(IdCardRepository idCardRepository) {
+        this.idCardRepository = idCardRepository;
+    }
+    
     public IdCard save(IdCard idCard) {
-        
-        System.out.println(idCard.getName());
-        System.out.println(idCard.getGender());
-        System.out.println(idCard.getFolk());
-        System.out.println(idCard.getAddress());
-        System.out.println(idCard.getAgency());
-        System.out.println(idCard.getBirthday());
-        System.out.println(idCard.getCode());
-        
-        return idCard;
+        return idCardRepository.save(idCard);
     } 
 }

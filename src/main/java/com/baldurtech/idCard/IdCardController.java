@@ -29,13 +29,6 @@ public class IdCardController {
     
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute("idCard") IdCard idCard) {
-        System.out.println(idCard.getName());
-        System.out.println(idCard.getGender());
-        System.out.println(idCard.getFolk());
-        System.out.println(idCard.getAddress());
-        System.out.println(idCard.getAgency());
-        System.out.println(idCard.getBirthday());
-        System.out.println(idCard.getCode());
         idCardService.save(idCard);
         
         return "redirect:list";
