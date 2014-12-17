@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.verify;
 
-public class IdCardControllerUnitTest {
+public class IdCardControllerUnitTest extends CreateIdCard{
     IdCard idCard;
     DateFormat format;
     
@@ -26,15 +26,7 @@ public class IdCardControllerUnitTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        idCard = new IdCard();
-        
-        idCard.setName("zhangsan");
-        idCard.setGender("female");
-        idCard.setFolk("han");
-        idCard.setAgency("shanxi");
-        idCard.setBirthday(Date.valueOf("2007-01-12"));
-        idCard.setAddress("taiyuan");
-        idCard.setCode("140000000000000000");
+        idCard = createValidIdCard();
     }
     
     @Test
