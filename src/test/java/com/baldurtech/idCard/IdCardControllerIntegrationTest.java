@@ -20,14 +20,7 @@ public class IdCardControllerIntegrationTest extends WebAppConfigurationAware {
     public void setup() {
         format = new SimpleDateFormat("yyyy-MM-dd");
     
-        idCard = new IdCard();
-        idCard.setName("zhangsan");
-        idCard.setGender("female");
-        idCard.setFolk("han");
-        idCard.setAgency("shanxi");
-        idCard.setBirthday(Date.valueOf("2007-01-12"));
-        idCard.setAddress("taiyuan");
-        idCard.setCode("140000000000000000");
+        idCard = createValidIdCard();
     }
     
     @Test

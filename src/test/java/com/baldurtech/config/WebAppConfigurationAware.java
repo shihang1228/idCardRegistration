@@ -11,13 +11,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
 
+import com.baldurtech.idCard.CreateIdCard;
+
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @WebAppConfiguration
 @ContextConfiguration(classes = {ApplicationConfig.class, EmbeddedDataSourceConfig.class, JpaConfig.class, SecurityConfig.class, WebMvcConfig.class})
-public abstract class WebAppConfigurationAware {
+public abstract class WebAppConfigurationAware extends CreateIdCard {
 
     @Inject
     protected WebApplicationContext wac;
