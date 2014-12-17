@@ -14,7 +14,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.verify;
 import javax.persistence.*;
 
-public class IdCardRepositoryUnitTest {
+public class IdCardRepositoryUnitTest extends CreateIdCard {
     IdCard idCard;
     DateFormat format;
     
@@ -29,16 +29,7 @@ public class IdCardRepositoryUnitTest {
         MockitoAnnotations.initMocks(this);
         idCardRepository.setEntityManager(entityManager);
         
-        idCard = new IdCard();
-        
-        idCard.setName("zhangsan");
-        idCard.setGender("female");
-        idCard.setFolk("han");
-        idCard.setAgency("shanxi");
-        idCard.setBirthday(Date.valueOf("2007-01-12"));
-        idCard.setAddress("taiyuan");
-        idCard.setCode("140000000000000000");
-        
+        idCard = createValidIdCard();
     }
     
     @Test
