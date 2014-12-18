@@ -1,9 +1,12 @@
 package com.baldurtech.idCard;
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,13 +47,25 @@ public class IdCardController {
         } catch(IOException e) {
             e.printStackTrace();
         }
-        
         return "redirect:list";
     }
     
     @RequestMapping(value = "show", method = RequestMethod.GET)
     public String show(@RequestParam("id") Long id, Model model) {
-        model.addAttribute("idCard", idCardService.getById(id));
+        model.addAttribute("idCard", idCardService.getById(id));  
         return "idCard/show";
+    }
+    
+    @RequestMapping(value = "image", method = RequestMethod.GET)
+    public @ResponseBody void showImage(@RequestParam("id") Long id, HttpServletResponse resp) {
+        try {
+            IdCard idCard = idCardService.getById(id);
+            
+            resp.setContentType(idCard.getContentType());
+            OutputStream out = resp.getOutputStream();
+            out.write(idCard.getContent());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
