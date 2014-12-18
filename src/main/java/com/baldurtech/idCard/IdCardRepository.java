@@ -21,16 +21,8 @@ public class IdCardRepository {
     }
     
     public IdCard getById(Long id) {
-        IdCard idCard = new IdCard();
-        
-        idCard.setName("zhangsan");
-        idCard.setGender("female");
-        idCard.setFolk("han");
-        idCard.setAgency("shanxi");
-        idCard.setBirthday(Date.valueOf("2007-01-12"));
-        idCard.setAddress("taiyuan");
-        idCard.setCode("140000000000000000");
-        
-        return idCard;
+       return entityManager.createNamedQuery(IdCard.GET_BY_ID, IdCard.class)
+                     .setParameter("id", id)
+                     .getSingleResult();
     }
 }

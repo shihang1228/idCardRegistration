@@ -5,7 +5,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="idCard")
+@NamedQuery(name = IdCard.GET_BY_ID, query = "from IdCard i where i.id = :id")
 public class IdCard {
+    public static final String GET_BY_ID = "IdCard.getById";
+    
     @Id
     @GeneratedValue
     private Long id;
