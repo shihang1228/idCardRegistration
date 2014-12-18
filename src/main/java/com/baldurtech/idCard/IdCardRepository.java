@@ -25,4 +25,9 @@ public class IdCardRepository {
                      .setParameter("id", id)
                      .getSingleResult();
     }
+    
+    public void delete(Long id) {
+        IdCard idCard = entityManager.find(IdCard.class, id);
+        entityManager.remove(idCard);
+    }
 }

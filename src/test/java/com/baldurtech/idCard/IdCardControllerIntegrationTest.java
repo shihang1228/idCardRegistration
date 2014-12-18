@@ -82,5 +82,6 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                     .param("id", String.valueOf(idCard.getId())))
                .andExpect(model().attributeExists("idCard"))
                .andExpect(view().name("idCard/show"));
+        idCardService.delete(idCard.getId());
     }
 }

@@ -19,4 +19,8 @@ public class IdCardService {
     public IdCard getById(Long id) {
         return idCardRepository.getById(id);
     } 
+    
+    public void delete(Long id) {
+        idCardRepository.delete(id);
+    }
 }
