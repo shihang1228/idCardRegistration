@@ -17,6 +17,7 @@ import static org.mockito.Mockito.verify;
 public class IdCardControllerUnitTest extends CreateIdCard{
     IdCard idCard;
     DateFormat format;
+    Long ID = 23L;
     
     @Mock
     MultipartFile image;
@@ -47,5 +48,10 @@ public class IdCardControllerUnitTest extends CreateIdCard{
     public void 调用save方法时应该返回redirect_list字符串() {
         assertEquals("redirect:list", idCardController.save(idCard, image));
         verify(idCardService).save(idCard);
+    }
+    
+    @Test
+    public void 调用show方法是应该返回idCard_show字符串() {
+        assertEquals("idCard/show", idCardController.show(ID));
     }
 }

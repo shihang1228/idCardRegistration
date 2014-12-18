@@ -46,4 +46,9 @@ public class IdCardController {
         
         return "redirect:list";
     }
+    
+    @RequestMapping(value = "show", method = RequestMethod.GET)
+    public String show(@RequestParam("id") Long id) {
+        return "idCard/show";
+    }
 }

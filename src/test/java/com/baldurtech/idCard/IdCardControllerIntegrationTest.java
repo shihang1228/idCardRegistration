@@ -19,6 +19,7 @@ import com.baldurtech.config.WebSecurityConfigurationAware;
 public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAware {
     IdCard idCard;
     DateFormat format;
+    Long ID = 14L;
     
     MockMultipartFile image;
     
@@ -47,7 +48,7 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
     }
     
     @Test
-    public void 当角色为user时url为idCard_create时应该访问create页面() throws Exception {
+    public void 当角色为admin时url为idCard_create时应该访问create页面() throws Exception {
         adminPerform(get("/idCard/create"))
                .andExpect(view().name("idCard/create"));
     }
@@ -64,5 +65,11 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                     .param("address", idCard.getAddress())
                     .param("code", idCard.getCode()))
                .andExpect(redirectedUrl("list"));
+    }
+    
+    public void 当角色为user时url为idCard_show时应该访问show页面() throws Exception {
+        userPerform(get("/idCard/show")
+                    .param("id", String.valueOf(ID)))
+               .andExpect(view().name("idCard/show"));
     }
 }
