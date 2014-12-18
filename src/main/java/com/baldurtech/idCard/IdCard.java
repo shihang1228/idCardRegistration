@@ -27,6 +27,11 @@ public class IdCard {
     private byte[] content;
     private String contentType;
     
+    @PrePersist
+    protected void onCreate() {
+        dateCreated = new java.util.Date();
+    }
+
 	public Long getId() {
 		return id;
 	}
@@ -106,12 +111,4 @@ public class IdCard {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
-    
-	public java.util.Date getDateCreated() {
-		return dateCreated;
-	}
-    
-	public void setDateCreated(java.util.Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
 }
