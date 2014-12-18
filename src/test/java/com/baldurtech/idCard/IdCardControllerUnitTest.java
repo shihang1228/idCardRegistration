@@ -51,7 +51,7 @@ public class IdCardControllerUnitTest extends CreateIdCard{
     
     @Test
     public void 调用save方法时应该返回redirect_list字符串() {
-        assertEquals("redirect:list", idCardController.save(idCard, image));
+        assertEquals("redirect:show", idCardController.save(idCard, image, model));
         verify(idCardService).save(idCard);
     }
     

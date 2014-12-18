@@ -37,17 +37,18 @@ public class IdCardController {
     
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute("idCard") IdCard idCard, 
-                       @RequestParam("image") MultipartFile image) {
+                       @RequestParam("image") MultipartFile image,
+                       Model model) {
         try {
             idCard.setContent(image.getBytes());
             idCard.setContentType(image.getContentType());
 
             idCardService.save(idCard);
- 
+            model.addAttribute("id", idCard.getId());
         } catch(IOException e) {
             e.printStackTrace();
         }
-        return "redirect:list";
+        return "redirect:show";
     }
     
     @RequestMapping(value = "show", method = RequestMethod.GET)

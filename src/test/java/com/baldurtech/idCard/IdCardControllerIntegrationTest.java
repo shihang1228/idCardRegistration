@@ -64,7 +64,8 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                     .param("agency", idCard.getAgency())
                     .param("address", idCard.getAddress())
                     .param("code", idCard.getCode()))
-               .andExpect(redirectedUrl("list"));
+               .andExpect(model().attributeExists("id"))
+               .andExpect(redirectedUrl("show?id=" + idCard.getId()));
     }
     
     public void 当角色为user时url为idCard_show时应该访问show页面() throws Exception {
