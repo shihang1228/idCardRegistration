@@ -14,10 +14,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.web.multipart.MultipartFile;
 import static org.mockito.Mockito.verify;
 
+import org.springframework.ui.Model;
+
 public class IdCardControllerUnitTest extends CreateIdCard{
     IdCard idCard;
     DateFormat format;
     Long ID = 23L;
+    
+    @Mock
+    Model model;
     
     @Mock
     MultipartFile image;
@@ -51,7 +56,8 @@ public class IdCardControllerUnitTest extends CreateIdCard{
     }
     
     @Test
-    public void 调用show方法是应该返回idCard_show字符串() {
-        assertEquals("idCard/show", idCardController.show(ID));
+    public void 调用show方法时应该返回idCard_show字符串() {
+        assertEquals("idCard/show", idCardController.show(ID, model));
+        verify(idCardService).getById(ID);
     }
 }
