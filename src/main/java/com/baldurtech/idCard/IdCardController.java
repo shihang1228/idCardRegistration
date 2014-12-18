@@ -69,4 +69,9 @@ public class IdCardController {
             e.printStackTrace();
         }
     }
+    
+    @RequestMapping(value = "index", method = RequestMethod.GET) 
+    public String index() {
+        return "idCard/index";
+    }
 }

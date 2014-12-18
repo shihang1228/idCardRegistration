@@ -60,4 +60,9 @@ public class IdCardControllerUnitTest extends CreateIdCard{
         assertEquals("idCard/show", idCardController.show(ID, model));
         verify(idCardService).getById(ID);
     }
+    
+    @Test
+    public void 调用index方法时应该返回idCard_index字符串() {
+        assertEquals("idCard/index", idCardController.index());
+    }
 }

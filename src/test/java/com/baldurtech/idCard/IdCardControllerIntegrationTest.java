@@ -90,4 +90,10 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                .andExpect(model().attributeExists("idCard"))
                .andExpect(view().name("idCard/show"));
     }
+    
+    @Test
+    public void 当角色为user时url为idCard_index时应该访问index页面() throws Exception {
+        userPerform(get("/idCard/index"))
+               .andExpect(view().name("idCard/index"));
+    }
 }
