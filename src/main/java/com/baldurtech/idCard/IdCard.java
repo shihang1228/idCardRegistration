@@ -20,6 +20,9 @@ public class IdCard {
     private String code;
     private Date birthday;
     
+    @Temporal( value = TemporalType.TIMESTAMP )
+    private java.util.Date dateCreated;
+    
     @Lob
     private byte[] content;
     private String contentType;
@@ -103,4 +106,12 @@ public class IdCard {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
+    
+	public java.util.Date getDateCreated() {
+		return dateCreated;
+	}
+    
+	public void setDateCreated(java.util.Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 }
