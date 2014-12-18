@@ -12,14 +12,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
-
 import com.baldurtech.config.WebSecurityConfigurationAware;
 
 public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAware {
     IdCard idCard;
     DateFormat format;
     Long ID = 14L;
+    
+    private IdCardRepository idCardRepository;
+    
+    @Autowired
+    IdCardService idCardService = new IdCardService(idCardRepository);
     
     MockMultipartFile image;
     
@@ -35,6 +40,8 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
     
     @Before
     public void setup() {
+        idCardRepository = new IdCardRepository();
+        
         image = new MockMultipartFile("image","image.jpg", "image/jpeg", "image".getBytes());
         format = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -68,9 +75,11 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                .andExpect(redirectedUrl("show?id=" + idCard.getId()));
     }
     
+    @Test
     public void 当角色为user时url为idCard_show时应该访问show页面() throws Exception {
+        idCardService.save(idCard);
         userPerform(get("/idCard/show")
-                    .param("id", String.valueOf(ID)))
+                    .param("id", String.valueOf(idCard.getId())))
                .andExpect(model().attributeExists("idCard"))
                .andExpect(view().name("idCard/show"));
     }
