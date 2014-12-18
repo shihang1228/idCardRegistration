@@ -2,6 +2,7 @@ package com.baldurtech.idCard;
 
 import org.junit.Test; 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Ignore;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -46,6 +47,13 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
         format = new SimpleDateFormat("yyyy-MM-dd");
     
         idCard = createValidIdCard();
+        
+        idCardService.save(idCard);
+    }
+    
+    @After
+    public void teardown() {
+        idCardService.delete(idCard.getId());
     }
     
     @Test
@@ -77,11 +85,9 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
     
     @Test
     public void 当角色为user时url为idCard_show时应该访问show页面() throws Exception {
-        idCardService.save(idCard);
         userPerform(get("/idCard/show")
                     .param("id", String.valueOf(idCard.getId())))
                .andExpect(model().attributeExists("idCard"))
                .andExpect(view().name("idCard/show"));
-        idCardService.delete(idCard.getId());
     }
 }
