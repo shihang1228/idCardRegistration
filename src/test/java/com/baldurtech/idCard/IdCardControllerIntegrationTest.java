@@ -68,7 +68,7 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                .andExpect(view().name("idCard/create"));
     }
     
-    @Test @Ignore
+    @Test 
     public void 当角色为user时url为idCard_save时应该重定向到list页面() throws Exception {
         userPerform(fileUpload("/idCard/save")
                     .file(image)
@@ -80,7 +80,7 @@ public class IdCardControllerIntegrationTest extends WebSecurityConfigurationAwa
                     .param("address", idCard.getAddress())
                     .param("code", idCard.getCode()))
                .andExpect(model().attributeExists("id"))
-               .andExpect(redirectedUrl("show?id=" + idCard.getId()));
+               .andExpect(redirectedUrl("show?id=3"));
     }
     
     @Test
