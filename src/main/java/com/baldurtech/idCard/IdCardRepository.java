@@ -30,4 +30,9 @@ public class IdCardRepository {
         IdCard idCard = entityManager.find(IdCard.class, id);
         entityManager.remove(idCard);
     }
+    
+    public IdCard getLatestIdCard() {
+        return entityManager.createNamedQuery(IdCard.GET_LATEST_ID_CARD, IdCard.class)
+                             .getSingleResult();
+    }
 }

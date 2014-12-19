@@ -72,6 +72,10 @@ public class IdCardController {
     
     @RequestMapping(value = "index", method = RequestMethod.GET) 
     public String index() {
+        IdCard idCard = idCardService.getLatestIdCard();
+        
+        System.out.println(idCard.getName());
+        System.out.println(idCard.getCode());
         return "idCard/index";
     }
 }

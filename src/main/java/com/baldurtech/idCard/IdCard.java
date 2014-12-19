@@ -5,9 +5,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="idCard")
-@NamedQuery(name = IdCard.GET_BY_ID, query = "from IdCard i where i.id = :id")
+@NamedQueries({
+    @NamedQuery(name = IdCard.GET_BY_ID, query = "from IdCard i where i.id = :id"),
+    @NamedQuery(name = IdCard.GET_LATEST_ID_CARD, query = "from IdCard i where i.dateCreated = (select max(i.dateCreated) from IdCard i)")
+   })
 public class IdCard {
     public static final String GET_BY_ID = "IdCard.getById";
+    public static final String GET_LATEST_ID_CARD = "IdCard.getLatestIdCard";
     
     @Id
     @GeneratedValue

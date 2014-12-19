@@ -23,4 +23,8 @@ public class IdCardService {
     public void delete(Long id) {
         idCardRepository.delete(id);
     }
+    
+    public IdCard getLatestIdCard() {
+        return idCardRepository.getLatestIdCard();
+    }
 }

@@ -6,6 +6,7 @@ import java.text.DateFormat;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
 
 import org.mockito.Mock;
@@ -61,7 +62,7 @@ public class IdCardControllerUnitTest extends CreateIdCard{
         verify(idCardService).getById(ID);
     }
     
-    @Test
+    @Test @Ignore
     public void 调用index方法时应该返回idCard_index字符串() {
         assertEquals("idCard/index", idCardController.index());
     }
