@@ -15,6 +15,8 @@ import static org.mockito.Mockito.when;
 import javax.persistence.*;
 
 public class EventRepositoryUnitTest {
+    Event event;
+    
     @Mock
     EntityManager entityManager;
     
@@ -27,7 +29,11 @@ public class EventRepositoryUnitTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+        
         eventRepository.setEntityManager(entityManager);
+        
+        event = new Event();
+        event.setName("the second team of safety education sign");
     }
     
     @Test
@@ -40,5 +46,11 @@ public class EventRepositoryUnitTest {
         assertEquals(eventList, eventRepository.findAll());
         verify(entityManager).createNamedQuery(Event.FIND_ALL, Event.class);
         verify(typedQuery).getResultList();
+    }
+    
+    @Test
+    public void 调用repository的save方法来保存event() {
+        assertEquals(event, eventRepository.save(event));
+        verify(entityManager).persist(event);
     }
 }

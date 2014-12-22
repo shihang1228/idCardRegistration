@@ -32,11 +32,19 @@ public class EventServiceUnitTest {
     }
     
     @Test
-    public void 调用save方法时应该返回idCard() {
+    public void 调用list方法时应该返回eventList() {
         when(eventRepository.findAll()).thenReturn(eventList);
         
         assertEquals(eventList, eventService.findAll());
         verify(eventRepository).findAll();
+    }
+    
+    @Test
+    public void 调用save方法是应该返回event() {
+        when(eventRepository.save(event)).thenReturn(event);
+        
+        assertEquals(event, eventService.save(event));
+        verify(eventRepository).save(event);
     }
 }
 

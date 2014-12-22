@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class EventRepository {
     @PersistenceContext
     EntityManager entityManager;
@@ -22,8 +24,7 @@ public class EventRepository {
     }
     
     public Event save(Event event) {
-        
-        System.out.println(event.getName());
+        entityManager.persist(event);
         return event;
     }
 }
