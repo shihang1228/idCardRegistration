@@ -1,6 +1,7 @@
 package com.baldurtech.event;
 
 import org.junit.Test; 
+import org.junit.Before; 
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -9,6 +10,13 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import com.baldurtech.config.WebAppConfigurationAware;
 
 public class EventControllerIntegrationTest extends WebAppConfigurationAware {
+    Event event;
+    
+    @Before
+    public void setup() {
+        event = new Event();
+        event.setName("the second team of safety education sign");
+    }
     
     @Test
     public void 当url为event_list时应该访问list页面() throws Exception {
@@ -21,5 +29,12 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
     public void 当url为event_create时应该访问create页面() throws Exception {
         mockMvc.perform(get("/event/create"))
                .andExpect(view().name("event/create"));
+    }
+    
+    @Test
+    public void 当url为event_save时应该重定向到list页面() throws Exception {
+        mockMvc.perform(post("/event/save")
+                       .param("name", event.getName()))
+               .andExpect(redirectedUrl("list"));
     }
 }
