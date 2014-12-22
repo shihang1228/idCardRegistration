@@ -13,6 +13,10 @@ public class EventRepository {
     @PersistenceContext
     EntityManager entityManager;
     
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+    
     public List<Event> findAll() {
         return entityManager.createNamedQuery(Event.FIND_ALL, Event.class).getResultList();
     }
