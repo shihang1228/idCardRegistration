@@ -5,5 +5,15 @@
 </head>
     <body>
         <h1 align="center">Event List</h1>
+        <table border="1" align="center">
+            <tr>
+                <td align="center">Event</td>
+                <td align="center">Date</td>
+            </tr>
+            <tr th:each="event : ${eventList}">
+                <td th:text="${event.name}"></td>
+                <td th:text="${event.dateCreated}"></td>
+            </tr>
+        </table>
     </body>
 </html>

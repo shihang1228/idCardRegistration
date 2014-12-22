@@ -13,6 +13,7 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
     @Test
     public void 当url为event_list时应该访问list页面() throws Exception {
         mockMvc.perform(get("/event/list"))
+               .andExpect(model().attributeExists("eventList"))
                .andExpect(view().name("event/list"));
     }
 }
