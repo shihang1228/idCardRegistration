@@ -20,4 +20,10 @@ public class EventRepository {
     public List<Event> findAll() {
         return entityManager.createNamedQuery(Event.FIND_ALL, Event.class).getResultList();
     }
+    
+    public Event save(Event event) {
+        
+        System.out.println(event.getName());
+        return event;
+    }
 }

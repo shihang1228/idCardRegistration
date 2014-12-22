@@ -13,6 +13,8 @@ import static org.mockito.Mockito.verify;
 import org.springframework.ui.Model;   
 
 public class EventControllerUnitTest {
+    Event event;
+    
     @Mock
     Model model;
     
@@ -25,11 +27,19 @@ public class EventControllerUnitTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+        event = new Event();
+        event.setName("the second team of safety education sign");
     }
     
     @Test
     public void 调用list方法时应该返回event_list字符串() {
         assertEquals("event/list", eventController.list(model));
         verify(eventService).findAll();
+    }
+    
+    @Test
+    public void 调用save方法时应该返回redirect_list字符串() {
+        assertEquals("redirect:list", eventController.save(event));
+        verify(eventService).save(event); 
     }
 }

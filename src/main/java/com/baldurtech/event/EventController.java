@@ -31,8 +31,7 @@ public class EventController {
     
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@ModelAttribute("event") Event event) {
-        System.out.println(event.getName());
-        
+        eventService.save(event);
         return "redirect:list";
     }
 }
