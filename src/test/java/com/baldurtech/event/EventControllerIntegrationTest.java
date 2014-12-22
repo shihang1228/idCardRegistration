@@ -37,4 +37,11 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
                        .param("name", event.getName()))
                .andExpect(redirectedUrl("list"));
     }
+    
+    @Test
+    public void 但url为event_show时应该显示show页面() throws Exception {
+        mockMvc.perform(post("/event/show")
+                       .param("name", event.getName()))
+               .andExpect(view().name("event/show"));
+    }
 }

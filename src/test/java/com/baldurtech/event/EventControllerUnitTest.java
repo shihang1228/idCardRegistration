@@ -42,4 +42,9 @@ public class EventControllerUnitTest {
         assertEquals("redirect:list", eventController.save(event));
         verify(eventService).save(event); 
     }
+    
+    @Test
+    public void 调用show方法时应该返回event_show字符串() {
+        assertEquals("event/show", eventController.show(model));
+    }
 }

@@ -34,4 +34,9 @@ public class EventController {
         eventService.save(event);
         return "redirect:list";
     }
+    
+    @RequestMapping(value = "show") 
+    public String show(Model model) {
+        return "event/show";
+    }
 }
