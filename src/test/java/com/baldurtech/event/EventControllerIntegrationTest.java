@@ -1,4 +1,4 @@
-package com.baldurtech.idCard;
+package com.baldurtech.event;
 
 import org.junit.Test; 
 

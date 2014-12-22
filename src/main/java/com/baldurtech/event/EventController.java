@@ -1,4 +1,4 @@
-package com.baldurtech.idCard;
+package com.baldurtech.event;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
