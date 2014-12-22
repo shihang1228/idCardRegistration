@@ -4,6 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class EventController {
     }
     
     @RequestMapping(value = "show") 
-    public String show(Model model) {
+    public String show(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("event", eventService.show(id));
         return "event/show";
     }
 }

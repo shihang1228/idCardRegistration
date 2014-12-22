@@ -15,6 +15,7 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
     @Before
     public void setup() {
         event = new Event();
+        event.setId(46L);
         event.setName("the second team of safety education sign");
     }
     
@@ -40,8 +41,9 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
     
     @Test
     public void 但url为event_show时应该显示show页面() throws Exception {
-        mockMvc.perform(post("/event/show")
-                       .param("name", event.getName()))
+        mockMvc.perform(get("/event/show")
+                       .param("id", String.valueOf(event.getId())))
+               .andExpect(model().attributeExists("event"))
                .andExpect(view().name("event/show"));
     }
 }

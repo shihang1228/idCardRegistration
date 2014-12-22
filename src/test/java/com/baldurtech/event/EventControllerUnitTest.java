@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 public class EventControllerUnitTest {
     Event event;
+    Long id = 5L;
     
     @Mock
     Model model;
@@ -45,6 +46,7 @@ public class EventControllerUnitTest {
     
     @Test
     public void 调用show方法时应该返回event_show字符串() {
-        assertEquals("event/show", eventController.show(model));
+        assertEquals("event/show", eventController.show(id, model));
+        verify(eventService).show(id);
     }
 }

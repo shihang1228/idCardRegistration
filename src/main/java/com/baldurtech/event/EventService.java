@@ -20,4 +20,11 @@ public class EventService {
     public Event save(Event event) {
         return eventRepository.save(event);
     }
+    
+    public Event show(Long id) {
+        Event event = new Event();
+        event.setName("Saftey educaticated");
+        event.setId(5L);
+        return event;
+    }
 }
