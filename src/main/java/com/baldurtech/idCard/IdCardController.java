@@ -70,12 +70,27 @@ public class IdCardController {
         }
     }
     
+    /*
     @RequestMapping(value = "index", method = RequestMethod.GET) 
-    public String index() {
+    public String index(Model model) {
         IdCard idCard = idCardService.getLatestIdCard();
-        
-        System.out.println(idCard.getName());
-        System.out.println(idCard.getCode());
+        while(idCardService.getLatestIdCard() != idCard) {
+            System.out.println(idCard);
+            System.out.println(idCardService.getLatestIdCard());
+            try {
+                Thread.sleep(1000);//3秒
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            model.addAttribute("id", idCard.getId());
+            return "redirect:show"; 
+        }
+        return "idCard/index";
+    }   */
+    
+    @RequestMapping(value = "indexOne") 
+    public String indexOne() {
         return "idCard/index";
     }
 }
