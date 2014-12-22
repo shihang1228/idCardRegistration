@@ -21,4 +21,9 @@ public class EventController {
         model.addAttribute("eventList", eventService.findAll());
         return "event/list";
     }
+    
+    @RequestMapping("create")
+    public String create() {
+        return "event/create";
+    }
 }

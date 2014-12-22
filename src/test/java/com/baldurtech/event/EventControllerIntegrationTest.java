@@ -16,4 +16,10 @@ public class EventControllerIntegrationTest extends WebAppConfigurationAware {
                .andExpect(model().attributeExists("eventList"))
                .andExpect(view().name("event/list"));
     }
+    
+    @Test
+    public void 当url为event_create时应该访问create页面() throws Exception {
+        mockMvc.perform(get("/event/create"))
+               .andExpect(view().name("event/create"));
+    }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Event Create</title>
+</head>
+<body>
+	<h1 align="center">Event Create</h1>
+    <form th:action="@{save}" method="POST">
+        <table align="center">
+            <tr>
+                <td>name</td>
+                <td><input type="text" name="name"/></td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td><input type="date" name="dateCreated"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="action"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
